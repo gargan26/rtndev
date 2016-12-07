@@ -8,12 +8,12 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=Twisted
-PKG_VERSION:=16.4.1
+PKG_VERSION:=16.6.0
 PKG_RELEASE:=1
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.bz2
-PKG_SOURCE_URL:=https://pypi.python.org/packages/6b/23/8dbe86fc83215015e221fbd861a545c6ec5c9e9cd7514af114d1f64084ab
-PKG_MD5SUM:=c6d09bdd681f538369659111f079c29d
+PKG_SOURCE_URL:=https://pypi.python.org/packages/dc/c0/a0114a6d7fa211c0904b0de931e8cafb5210ad824996cc6a9d67f3bae22c
+PKG_MD5SUM:=54a88ffe773d5a83c91fcfe86044b094
 
 PKG_BUILD_DEPENDS:=python3 python3-setuptools
 
