@@ -7,7 +7,7 @@
 
 include $(TOPDIR)/rules.mk
 
-PKG_NAME:=python-requests
+PKG_NAME:=python3-requests
 PKG_VERSION:=2.11.1
 PKG_RELEASE:=1
 
@@ -15,10 +15,12 @@ PKG_SOURCE:=requests-$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=https://pypi.python.org/packages/2e/ad/e627446492cc374c284e82381215dcd9a0a87c4f6e90e9789afefe6da0ad
 PKG_MD5SUM:=ad5f9c47b5c5dfdb28363ad7546b0763
 
-PKG_BUILD_DIR:=$(BUILD_DIR)/requests-$(PKG_VERSION)
+PKG_BUILD_DEPENDS:=python3-setuptools
 
 include $(INCLUDE_DIR)/package.mk
-$(call include_mk, python-package.mk)
+$(call include_mk, python3-package.mk)
+
+PKG_UNPACK:=gzip -dc $(DL_DIR)/$(PKG_SOURCE) | $(TAR) -C $(PKG_BUILD_DIR) --strip-components=1 $(TAR_OPTIONS)
 
 define Package/$(PKG_NAME)
 	SUBMENU:=Python
@@ -26,7 +28,7 @@ define Package/$(PKG_NAME)
 	CATEGORY:=Languages
 	TITLE:=Python HTTP for Humans
 	URL:=http://python-requests.org
-	DEPENDS:=+python
+	DEPENDS:=+python3
 	MAINTAINER:=Entware team, http://entware.net
 endef
 
@@ -38,17 +40,17 @@ define Package/$(PKG_NAME)/description
 endef
 
 define Build/Compile
-	$(call Build/Compile/PyMod,,install \
+	$(call Build/Compile/Py3Mod,,install \
 		--prefix=/opt \
 		--root=$(PKG_INSTALL_DIR) \
 	)
 endef
 
 define Package/$(PKG_NAME)/install
-	$(INSTALL_DIR) $(1)$(PYTHON_PKG_DIR)
+	$(INSTALL_DIR) $(1)$(PYTHON3_PKG_DIR)
 	$(CP) \
-	    $(PKG_INSTALL_DIR)$(PYTHON_PKG_DIR)/* \
-	    $(1)$(PYTHON_PKG_DIR)/
+	    $(PKG_INSTALL_DIR)$(PYTHON3_PKG_DIR)/* \
+	    $(1)$(PYTHON3_PKG_DIR)/
 endef
 
 $(eval $(call BuildPackage,$(PKG_NAME)))
