@@ -15,7 +15,7 @@ PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=https://pypi.python.org/packages/38/1b/d55c39f2cf442bd9fb2c59760ed058c84b57d25c680819c25f3aff741e1f
 PKG_MD5SUM:=5f7e15a5bcdfa3c6c0e93ffe45caf87c
 
-PKG_BUILD_DEPENDS:=python3 python3-setuptools
+PKG_BUILD_DEPENDS:=python3-setuptools
 
 PKG_LICENSE:=ZPL-2.1
 PKG_LICENSE_FILES:=LICENSE.txt
@@ -28,9 +28,9 @@ define Package/python3-zope.interface
   SECTION:=lang
   CATEGORY:=Languages
   SUBMENU:=Python
-  TITLE:=Python 3 Zope interface
+  TITLE:=Interfaces for Python3
   URL:=http://pypi.python.org/pypi/zope.interface
-  DEPENDS:=+python3-light
+  DEPENDS:=+python3
 endef
 
 define Package/python3-zope.interface/description
@@ -49,8 +49,9 @@ define Py3Package/python3-zope.interface/filespec
 endef
 
 define Build/Compile
-	$(call Build/Compile/Py3Mod,, \
-		install --prefix="/opt" --root="$(PKG_INSTALL_DIR)" --no-compile, \
+	$(call Build/Compile/Py3Mod,,install \
+		--prefix="/opt" \
+		--root="$(PKG_INSTALL_DIR)", \
 	)
 endef
 
